@@ -12,7 +12,7 @@ let descriptionName = document.getElementById("descriptionName");
 let editDescription = document.getElementById("editDescription");
 let editModal = document.getElementById("editModal")
 
-saveBtn.addEventListener("click", ()=>{
+saveBtn.addEventListener("click", () => {
     let taskNameValue = taskName.value;
     let descriptionValue = descriptionName.value;
     let priorityValue = priorityDropDown.value;
@@ -56,18 +56,18 @@ const createElem = (taskName, description, priority, dueDate, status) => {
     let btnDiv = document.createElement("div");
     btnDiv.classList.add("d-flex", "flex-column");
 
-    let editButton = document.createElement("button");
-    editButton.classList.add("mb-3");
-    editButton.style.borderRadius = "10px";
-    editButton.style.backgroundColor = "yellowgreen";
-    editButton.innerText = "Edit";
+    let btnEdit = document.createElement("button");
+    btnEdit.classList.add("mb-3");
+    btnEdit.style.borderRadius = "10px";
+    btnEdit.style.backgroundColor = "yellowgreen";
+    btnEdit.innerText = "Edit";
 
     let removeButton = document.createElement("button");
     removeButton.style.borderRadius = "10px";
     removeButton.style.backgroundColor = "red";
     removeButton.innerText = "Remove";
 
-    editButton.addEventListener("click", ()=> {
+    btnEdit.addEventListener("click", () => {
         editTaskName.value = p1.innerText;
         editPriority.value = priority;
         editStatus.value = status;
@@ -76,8 +76,8 @@ const createElem = (taskName, description, priority, dueDate, status) => {
         editDueDate.value = dueDateText;
         let editModal = new bootstrap.Modal(editModalElement);
         editModal.show();
-        
-        editSaveBtn.addEventListener("click", ()=> {
+
+        editSaveBtn.addEventListener("click", () => {
             p1.innerText = editTaskName.value;
             p3.innerText = "Priority: " + editPriority.value;
             p2.innerText = "Due: " + editDueDate.value;
@@ -91,7 +91,7 @@ const createElem = (taskName, description, priority, dueDate, status) => {
                 dueDate: editDueDate.value,
                 status: newStatus
             });
-    
+
             taskName = editTaskName.value;
             priority = editPriority.value;
             status = newStatus;
@@ -107,16 +107,16 @@ const createElem = (taskName, description, priority, dueDate, status) => {
             editModal.hide();
         });
     });
-    removeButton.addEventListener("click", ()=> {
+    removeButton.addEventListener("click", () => {
         removeLocal(taskName.innerText);
         div1.remove();
     });
-    
-    btnDiv.appendChild(editButton);
+
+    btnDiv.appendChild(btnEdit);
     btnDiv.appendChild(removeButton);
     div1.appendChild(div2);
     div1.appendChild(btnDiv);
-    
+
     if (status === "toDo") {
         toDoCol.appendChild(div1);
     } else if (status === "inProgress") {
@@ -125,7 +125,7 @@ const createElem = (taskName, description, priority, dueDate, status) => {
         completeCol.appendChild(div1);
     }
 }
-const saveLocal = (taskName, description, priority, dueDate, status)=>{
+const saveLocal = (taskName, description, priority, dueDate, status) => {
     let tasks = getLocal()
     tasks.push({
         taskName: taskName,
@@ -141,7 +141,7 @@ const updateLocal = (taskName, newData) => {
     let index = tasks.findIndex(task => task.taskName === taskName);
     tasks[index] = newData;
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+
 };
 const loadIt = () => {
     let tasks = getLocal()
