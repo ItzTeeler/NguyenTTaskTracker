@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body style="background-color: rgb(13, 13, 54);">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col text-center" style="color: white;">
+                <h1>Task Tracker Manager</h1>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-end">
+                    <button type="button" id="addNewTaskBtn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Add Tasks
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <p>Name:</p>
+                            </div>
+                            <div class="col">
+                                <input id="taskName" type="text" placeholder="Enter Task Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Description:</p>
+                            </div>
+                            <div class="col">
+                                <input id="descriptionName" type="text" placeholder="Enter Description">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Priority:</p>
+                            </div>
+                            <div class="col">
+                                <select id="priorityDropDown">
+                                    <option value="low">Low</option>
+                                    <option value="med">Med</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Due Date:</p>
+                            </div>
+                            <div class="col">
+                                <input id="dateCal" type="date">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Status:</p>
+                            </div>
+                            <div class="col">
+                                <select id="statusDropDown">
+                                    <option value="toDo">To-Do</option>
+                                    <option value="inProgress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="saveBtn" type="button" class="btn btn-primary">Create Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-5">
+        <div class="row text-center" style="background-color: black;">
+            <div class="col">
+                <span class="text-center" style="color: white; font-size: 30px;">To Do</span>
+            </div>
+            <div class="col">
+                <span class="text-center" style="color: white; font-size: 30px;">In Progress</span>
+            </div>
+            <div class="col">
+                <span class="text-center" style="color: white; font-size: 30px;">Complete</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col">
+                <div id="toDoCol">
+                   
+                </div>
+            </div>
+            <div class="col">
+                <div id="inProgressCol">
+                    
+                </div>
+            </div>
+            <div class="col">
+                <div id="completeCol">
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">Edit Task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <p>Name:</p>
+                    </div>
+                    <div class="col">
+                        <input id="editTaskName" type="text" placeholder="Enter Task Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Description:</p>
+                    </div>
+                    <div class="col">
+                        <input id="editDescription" type="text" placeholder="Enter Description">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Priority:</p>
+                    </div>
+                    <div class="col">
+                        <select id="editPriority">
+                            <option value="low">Low</option>
+                            <option value="med">Med</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Due Date:</p>
+                    </div>
+                    <div class="col">
+                        <input id="editDueDate" type="date">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Status:</p>
+                    </div>
+                    <div class="col">
+                        <select id="editStatus">
+                            <option value="toDo">To-Do</option>
+                            <option value="inProgress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="editSaveBtn" type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <script src="./scritps/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
